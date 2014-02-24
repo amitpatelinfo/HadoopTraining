@@ -1,3 +1,6 @@
+Log Analysis
+==============
+
 we are going to write a program that takes web server access log files and counts the number of hits in each minute slot over a week. 
 
 We will analyze months of logs and plot the distribution in order to get a view of how traffic volumes tend to vary over the course of a week.
