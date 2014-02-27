@@ -13,7 +13,6 @@ from datetime import datetime
 DATE_FORMAT = "%Y-%m-%d %H:%M:%S.%f"
 
 reader = csv.reader(sys.stdin, delimiter='\t')
-writer = csv.writer(sys.stdout, delimiter='\t', quotechar='"', quoting=csv.QUOTE_NONE)
 
 for data in reader:
     if len(data) == 19:
