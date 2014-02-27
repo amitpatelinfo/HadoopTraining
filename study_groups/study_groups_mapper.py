@@ -6,18 +6,16 @@
 # We want to return the output as (id , parentid , authorid) - parenid will be 0 incase of question
 
 import sys
-import re
+import csv
 
-def stripQuotes(data):
-	return re.sub(r'^"|"$', '', data)
+reader = csv.reader(sys.stdin, delimiter='\t')
+writer = csv.writer(sys.stdout, delimiter='\t', quotechar='"', quoting=csv.QUOTE_NONE)
 
-for line in sys.stdin:
-    data = line.split("\t")
+for data in reader:
     if len(data) == 19:
         id, title, tagnames, author_id, body, node_type, parent_id, abs_parent_id, added_at, score, state_string, last_edited_id, last_activity_by_id, last_activity_at, active_revision_id, extra, extra_ref_id, extra_count, marked = data
-        if id != '"id"':
-            nt = stripQuotes(node_type)
-            if nt == 'question':
-	    	    print "{0} 0 {1}".format(stripQuotes(id),stripQuotes(author_id))
+        if id != 'id':
+            if node_type == 'question':
+	    	    print "{0} 0 {1}".format(id,author_id)
             else:
-                print "{0} {1} {2}".format(stripQuotes(abs_parent_id),stripQuotes(id), stripQuotes(author_id))
+                print "{0} {1} {2}".format(abs_parent_id,id, author_id)

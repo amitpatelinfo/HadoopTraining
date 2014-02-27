@@ -19,4 +19,4 @@ for tagName in sys.stdin:
 
 result = sorted(tagNameMap.iteritems(), key=operator.itemgetter(1),reverse=True)
 for key in range(0, 10):
-    print result[key][0], "\t", result[key][1]
+    print "{0}\t{1}".format(result[key][0].strip(),result[key][1])

@@ -7,17 +7,14 @@
 # Only need to get tagname if the node_type is question as per the requirment.
 
 import sys
-import re
+import csv
 
-def stripQuotes(data):
-	return re.sub(r'^"|"$', '', data)
+reader = csv.reader(sys.stdin, delimiter='\t')
+writer = csv.writer(sys.stdout, delimiter='\t', quotechar='"', quoting=csv.QUOTE_NONE)
 
-for line in sys.stdin:
-    data = line.strip().split("\t")
+for data in reader:
     if len(data) == 19:
-        node_type = stripQuotes(data[5]).strip()
-        tagnames = stripQuotes(data[2]).strip()
-	    #Filter by nodetype as questions
+        id, title, tagnames, author_id, body, node_type, parent_id, abs_parent_id, added_at, score, state_string, last_edited_id, last_activity_by_id, last_activity_at, active_revision_id, extra, extra_ref_id, extra_count, marked = data
         if node_type == "question":
             tags = tagnames.split(" ")
             for tag in tags:

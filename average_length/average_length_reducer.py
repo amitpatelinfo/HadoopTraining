@@ -29,16 +29,16 @@ for line in sys.stdin:
     questionId, parentId, originalPostLength = data_mapped
 
     if oldQuestionId == None and parentId == "0":
-        questionLength = originalPostLength
+        questionLength = int(originalPostLength)
 
     if oldQuestionId and oldQuestionId != questionId:
         if totalAns != 0:
             answerAvgLength = float(answerTotalLength / totalAns)
         if questionLength != -1:
-                print oldQuestionId, "\t", questionLength, "\t", answerAvgLength
+                print "{0}\t{1}\t{2}".format(oldQuestionId, questionLength, answerAvgLength)
         questionLength = -1
         if parentId == "0":
-            questionLength = originalPostLength
+            questionLength = int(originalPostLength)
         totalAns = 0
         answerTotalLength = 0
         answerAvgLength = 0
@@ -52,4 +52,4 @@ if oldQuestionId != None:
     if totalAns != 0:
         answerAvgLength = float(answerTotalLength / totalAns)
     if questionLength != -1:
-        print oldQuestionId, "\t", questionLength, "\t", answerAvgLength
+        print "{0}\t{1}\t{2}".format(oldQuestionId, questionLength, answerAvgLength)
