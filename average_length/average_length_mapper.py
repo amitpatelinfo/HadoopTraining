@@ -17,4 +17,4 @@ for data in reader:
     if node_type == 'question':
         print "{0} 0 {1}".format(id,len(body))
     if node_type == 'answer':
-        print "{0} {1} {2}".format(id, abs_parent_id, len(body))
+        print "{0} {1} {2}".format(abs_parent_id,id, len(body))
