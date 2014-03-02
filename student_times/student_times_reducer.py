@@ -27,9 +27,10 @@ for line in sys.stdin:
         result = sorted(authorHourMap.iteritems(), key=operator.itemgetter(1),reverse=True)
         resHour = -1
         for res in result:
-            if resHour == -1 or resHour == res[1]:
-                print oldAuthorId , "\t" , res[0]
-            resHour = res[1]
+            if resHour == -1:
+                resHour = res[1]
+            if resHour == res[1]:
+                print oldAuthorId , "\t" , res[0] , "\t" , res[1]
         authorHourMap = {}
 
     oldAuthorId = authorId
@@ -38,3 +39,8 @@ for line in sys.stdin:
         authorHourMap[hour] += 1
     else:
         authorHourMap[hour] = 1
+result = sorted(authorHourMap.iteritems(), key=operator.itemgetter(1),  reverse=True)
+resHour = -1
+for res in result:
+    if resHour == -1 or resHour == res[1]:
+        print oldAuthorId , "\t" , res[0]
